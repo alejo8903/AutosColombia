@@ -1,0 +1,21 @@
+@startuml
+package "Presentación (Controller)" {
+  class "VehicleController"
+  class "HomeController"
+}
+
+package "Negocio (Service)" {
+  class "VehicleService"
+  class "RegisterService"
+}
+
+package "Persistencia (Repository)" {
+  class "VehicleRepository"
+  class "RegisterRepository"
+}
+
+"VehicleController" --> "VehicleService"
+"VehicleController" --> "RegisterService"
+"VehicleService" --> "VehicleRepository"
+"RegisterService" --> "RegisterRepository"
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+actor Empleado
+
+usecase "Registrar entrada de vehículo" as UC1
+usecase "Registrar salida de vehículo" as UC2
+usecase "Consultar historial de vehículo" as UC3
+
+Empleado --> UC1
+Empleado --> UC2
+Empleado --> UC3
+@enduml

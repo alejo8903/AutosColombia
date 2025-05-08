@@ -1,0 +1,14 @@
+@startuml
+class Vehicle {
+    +plate: String
+}
+
+class Register {
+    +id: Long
+    +entryDate: LocalDateTime
+    +exitDate: LocalDateTime
+    +totalTime: Long
+}
+
+Vehicle "1" -- "0..*" Register : registra
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+package "Arquitectura de la Aplicación" {
+  package "Capa de Presentación" {
+    class "Interfaz Web (Thymeleaf)"
+  }
+
+  package "Capa de Negocio" {
+    class "GestorVehiculos" {
+      + registrarEntrada()
+      + registrarSalida()
+      + consultarHistorial()
+    }
+  }
+
+  package "Capa de Persistencia" {
+    class "RepositorioVehiculos" {
+      + guardarEntrada()
+      + guardarSalida()
+      + obtenerHistorial()
+    }
+  }
+
+  "Interfaz Web (Thymeleaf)" --> "GestorVehiculos"
+  "GestorVehiculos" --> "RepositorioVehiculos"
+}
+@enduml

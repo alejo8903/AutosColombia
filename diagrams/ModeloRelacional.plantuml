@@ -1,0 +1,19 @@
+@startuml
+entity Vehiculo {
+  * placa : VARCHAR(10) <<PK>>
+  tipo : VARCHAR(20)
+  propietario : VARCHAR(100)
+}
+
+
+entity Registro {
+  * id : INT <<PK>>
+  fecha_entrada : DATETIME
+  fecha_salida : DATETIME
+  tiempo_permanencia : INT
+  placa : VARCHAR(10) <<FK>>
+}
+
+
+Vehiculo ||..o{ Registro : placa
+@enduml
