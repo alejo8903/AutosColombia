@@ -1,11 +1,7 @@
 package com.parking.autoscolombia.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,7 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 public class Vehicle {
+
     @Id
     private String plate;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }
