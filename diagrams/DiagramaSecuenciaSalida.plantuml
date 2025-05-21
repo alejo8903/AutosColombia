@@ -1,0 +1,13 @@
+@startuml
+actor Empleado
+participant "Sistema" as S
+participant "Base de Datos" as DB
+
+Empleado -> S : Registrar salida (placa)
+S -> DB : Buscar registro de entrada
+DB --> S : Datos del vehículo
+S -> DB : Calcular tiempo
+S -> DB : Actualizar registro (hora salida, pago)
+DB --> S : Confirmación
+S --> Empleado : Mostrar resumen de salida y pago
+@enduml

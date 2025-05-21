@@ -15,6 +15,7 @@
         <th>Entrada</th>
         <th>Salida</th>
         <th>Tiempo (min)</th>
+        <th>Celda</th>
     </tr>
     </thead>
     <tbody>
@@ -23,12 +24,15 @@
         <td th:text="${#temporals.format(register.entryDate, 'yyyy-MM-dd HH:mm')}"></td>
         <td th:text="${register.exitDate != null ? #temporals.format(register.exitDate, 'yyyy-MM-dd HH:mm') : '---'}"></td>
         <td th:text="${register.totalTime != null ? register.totalTime : '---'}"></td>
+        <td th:text="${register.cell != null ? register.cell.code : '---'}"></td>
     </tr>
     </tbody>
 </table>
 
 <a href="/vehicle/entrada" class="btn btn-primary">Registrar Entrada</a>
 <a href="/vehicle/salida" class="btn btn-danger">Registrar Salida</a>
+<a href="/celdas" class="btn btn-info">Ver Celdas</a>
+<a href="/celdas/nueva" class="btn btn-success">Agregar Celda</a>
 
 </body>
 </html>

@@ -1,0 +1,12 @@
+@startuml
+actor Administrador
+participant "Sistema" as S
+participant "Base de Datos" as DB
+
+Administrador -> S : Ingresar número y estado de celda
+S -> DB : Verificar número de celda único
+DB --> S : Validación exitosa
+S -> DB : Guardar celda
+DB --> S : Confirmación
+S --> Administrador : Mostrar mensaje de éxito
+@enduml

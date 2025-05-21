@@ -8,4 +8,6 @@ usecase "Consultar historial de vehículo" as UC3
 Empleado --> UC1
 Empleado --> UC2
 Empleado --> UC3
+
+
 @enduml

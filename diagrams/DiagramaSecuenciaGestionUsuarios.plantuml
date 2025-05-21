@@ -1,0 +1,12 @@
+@startuml
+actor Administrador
+participant "Sistema" as S
+participant "Base de Datos" as DB
+
+Administrador -> S : Ingresar datos del nuevo usuario
+S -> DB : Validar correo único
+DB --> S : Correo válido
+S -> DB : Guardar usuario (nombre, correo, rol)
+DB --> S : Confirmación
+S --> Administrador : Mostrar mensaje de éxito
+@enduml

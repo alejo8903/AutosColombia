@@ -20,6 +20,8 @@ package "Arquitectura de la Aplicación" {
     }
   }
 
+
+
   "Interfaz Web (Thymeleaf)" --> "GestorVehiculos"
   "GestorVehiculos" --> "RepositorioVehiculos"
 }

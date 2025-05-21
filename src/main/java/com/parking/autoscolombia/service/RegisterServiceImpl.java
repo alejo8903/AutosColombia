@@ -1,5 +1,6 @@
 package com.parking.autoscolombia.service;
 
+import com.parking.autoscolombia.model.Cell;
 import com.parking.autoscolombia.model.Register;
 import com.parking.autoscolombia.model.Vehicle;
 import com.parking.autoscolombia.repository.RegisterRepository;
@@ -20,22 +21,33 @@ public class RegisterServiceImpl implements RegisterService{
     @Autowired
     private VehicleRepository vehiculoRepository;
 
-    @Override
-    public void registerExit(String plate) {
-        Register register = registroRepository.findTopByVehiclePlateAndExitDateIsNullOrderByEntryDateDesc(plate)
-                .orElseThrow(() -> new RuntimeException("No se encontró entrada activa para este vehículo"));
-        register.setExitDate(LocalDateTime.now());
-        Duration duracion = Duration.between(register.getEntryDate(), register.getExitDate());
-        register.setTotalTime((int) duracion.toMinutes());
-        registroRepository.save(register);
-    }
+    @Autowired
+    private CellService cellService;
 
     @Override
     public void registerEntry(String plate) {
         Vehicle vehicle = vehiculoRepository.findById(plate).orElseThrow();
+        Cell cell = cellService.getFreeCell().orElseThrow(() -> new RuntimeException("No hay celdas disponibles"));
+
         Register register = new Register();
         register.setVehicle(vehicle);
         register.setEntryDate(LocalDateTime.now());
+        register.setCell(cell);
+
+        cellService.setCellOccupied(cell, true);
+        registroRepository.save(register);
+    }
+
+    @Override
+    public void registerExit(String plate) {
+        Register register = registroRepository.findTopByVehiclePlateAndExitDateIsNullOrderByEntryDateDesc(plate)
+                .orElseThrow(() -> new RuntimeException("No se encontró entrada activa"));
+
+        register.setExitDate(LocalDateTime.now());
+        Duration duracion = Duration.between(register.getEntryDate(), register.getExitDate());
+        register.setTotalTime((int) duracion.toMinutes());
+
+        cellService.setCellOccupied(register.getCell(), false);
         registroRepository.save(register);
     }
 

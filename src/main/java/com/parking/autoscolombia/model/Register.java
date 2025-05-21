@@ -25,4 +25,6 @@ public class Register {
     @ManyToOne
     @JoinColumn(name = "vehicle_plate", referencedColumnName = "plate")
     private Vehicle vehicle;
+    @ManyToOne
+    private Cell cell;
 }

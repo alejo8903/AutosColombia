@@ -14,6 +14,13 @@ entity Registro {
   placa : VARCHAR(10) <<FK>>
 }
 
+entity usuarios {
+* id : INT <<PK>>}
+  nombre : VARCHAR(100)
+  rol : VARCHAR(20)
+  contrasena : VARCHAR(100)
+    }
+
 
 Vehiculo ||..o{ Registro : placa
 @enduml

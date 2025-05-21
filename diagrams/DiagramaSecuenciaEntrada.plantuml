@@ -1,0 +1,12 @@
+@startuml
+actor Empleado
+participant "Sistema" as S
+participant "Base de Datos" as DB
+
+Empleado -> S : Registrar entrada de vehículo (placa)
+S -> DB : Buscar celda libre
+DB --> S : Celda disponible
+S -> DB : Registrar entrada\n(placa, hora, celda asignada)
+DB --> S : Confirmación
+S --> Empleado : Mostrar mensaje de éxito
+@enduml

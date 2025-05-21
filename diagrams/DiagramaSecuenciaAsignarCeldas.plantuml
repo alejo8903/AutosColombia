@@ -1,0 +1,13 @@
+@startuml
+actor Empleado
+participant "Sistema" as S
+participant "Base de Datos" as DB
+
+Empleado -> S : Buscar celdas disponibles
+S -> DB : Obtener celdas libres
+DB --> S : Lista de celdas
+Empleado -> S : Asignar celda a vehículo (placa, celda)
+S -> DB : Registrar entrada y cambiar estado de celda a "ocupada"
+DB --> S : Confirmación
+S --> Empleado : Confirmar asignación
+@enduml
