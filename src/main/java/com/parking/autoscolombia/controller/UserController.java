@@ -19,7 +19,7 @@ public class UserController {
 
     private final UserService userService;
 
-    // Mostrar lista de usuarios
+
     @GetMapping
     public String listUsers(Model model) {
         List<User> users = userService.getAllUsers();
@@ -27,14 +27,14 @@ public class UserController {
         return "users/list";
     }
 
-    // Mostrar formulario para crear nuevo usuario
+
     @GetMapping("/new")
     public String showCreateForm(Model model) {
         model.addAttribute("user", new User());
         return "users/create";
     }
 
-    // Procesar creación de nuevo usuario
+
     @PostMapping
     public String createUser(@Valid @ModelAttribute User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
@@ -44,13 +44,13 @@ public class UserController {
             userService.saveUser(user);
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            model.addAttribute("user", user); // Mantener datos en formulario
+            model.addAttribute("user", user); 
             return "users/create";
         }
         return "redirect:/users";
     }
 
-    // Mostrar formulario para editar usuario
+
     @GetMapping("/edit/{cedula}")
     public String showEditForm(@PathVariable String cedula, Model model) {
         User user = userService.getUserById(cedula)
@@ -59,14 +59,14 @@ public class UserController {
         return "users/edit";
     }
 
-    // Procesar actualización de usuario
+
     @PostMapping("/update/{cedula}")
     public String updateUser(@PathVariable String cedula, @Valid @ModelAttribute User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "users/edit";
         }
         try {
-            // Opcional: validar que no exista otro usuario con la misma cédula si cambió
+
             if (!cedula.equals(user.getCedula())) {
                 if (userService.getUserById(user.getCedula()).isPresent()) {
                     model.addAttribute("errorMessage", "La cédula ya está registrada por otro usuario.");
@@ -74,7 +74,7 @@ public class UserController {
                     return "users/edit";
                 }
             }
-            user.setCedula(cedula); // Aseguramos la cédula original para la actualización
+            user.setCedula(cedula); 
             userService.updateUser(user);
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
@@ -84,7 +84,7 @@ public class UserController {
         return "redirect:/users";
     }
 
-    // Eliminar usuario si no está activo
+
     @GetMapping("/delete/{cedula}")
     public String deleteUser(@PathVariable String cedula, Model model) {
         try {

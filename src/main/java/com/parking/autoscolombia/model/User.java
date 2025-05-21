@@ -32,12 +32,10 @@ public class User {
     @NotBlank(message = "El estado es obligatorio") 
     private String estado;
 
-    // Método para obtener el estado como booleano
     public boolean isActivo() {
         return "Activo".equalsIgnoreCase(this.estado);
     }
 
-    // Método para setear estado a partir de booleano
     public void setActivo(boolean activo) {
         this.estado = activo ? "Activo" : "Inactivo";
     }
