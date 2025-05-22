@@ -34,4 +34,14 @@ public class CellServiceImpl implements CellService {
         cell.setOccupied(occupied);
         cellRepository.save(cell);
     }
+
+    @Override
+    public Optional<Cell> getCellById(Long id) {
+        return cellRepository.findById(id);
+    }
+
+    @Override
+    public void deleteCell(Cell cell) {
+        cellRepository.delete(cell);
+    }
 }

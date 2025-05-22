@@ -10,4 +10,8 @@ public interface CellService {
     void saveCell(Cell cell);
     Optional<Cell> getFreeCell();
     void setCellOccupied(Cell cell, boolean occupied);
+
+    Optional<Cell> getCellById(Long id);
+
+    void deleteCell(Cell cell);
 }

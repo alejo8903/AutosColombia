@@ -17,4 +17,6 @@ public class Cell {
 
     private boolean occupied;
 
+    private String type;
+
 }

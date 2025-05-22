@@ -15,6 +15,8 @@
     <th>ID</th>
     <th>Código</th>
     <th>Ocupada</th>
+    <th>Tipo</th>
+    <th>Acciones</th>
   </tr>
   </thead>
   <tbody>
@@ -22,6 +24,13 @@
     <td th:text="${celda.id}"></td>
     <td th:text="${celda.code}"></td>
     <td th:text="${celda.occupied ? 'Sí' : 'No'}"></td>
+    <td th:text="${celda.type}"></td>
+    <td>
+      <a th:href="@{'/celdas/editar/' + ${celda.id}}" class="btn btn-warning btn-sm">Editar</a>
+      <a th:href="@{'/celdas/eliminar/' + ${celda.id}}"
+         onclick="return confirm('¿Está seguro de eliminar esta celda?')"
+         class="btn btn-danger btn-sm">Eliminar</a>
+    </td>
   </tr>
   </tbody>
 </table>
