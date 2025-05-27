@@ -36,6 +36,12 @@ public class PaymentController {
     @PostMapping("/guardar")
     public String guardarPago(@ModelAttribute Payment pago) {
         pago.setDate(LocalDate.now());
+
+        // Validación adicional
+        if (pago.getUser() == null) {
+            throw new IllegalArgumentException("Debe seleccionar un usuario.");
+        }
+
         paymentService.savePayment(pago);
         return "redirect:/pagos";
     }

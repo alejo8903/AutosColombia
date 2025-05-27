@@ -1,6 +1,7 @@
 package com.parking.autoscolombia.service;
 
 import com.parking.autoscolombia.model.Payment;
+import com.parking.autoscolombia.model.User;
 import com.parking.autoscolombia.repository.PaymentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,12 +13,14 @@ import java.util.List;
 public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentRepository paymentRepository;
+    private final UserService userService;
 
     public List<Payment> getAllPayments() {
         return paymentRepository.findAll();
     }
 
     public void savePayment(Payment payment) {
+
         paymentRepository.save(payment);
     }
 
