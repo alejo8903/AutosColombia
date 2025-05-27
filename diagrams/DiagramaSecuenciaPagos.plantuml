@@ -1,0 +1,15 @@
+@startuml
+actor Administrador
+participant "UI Pagos" as UI
+participant "Controlador Pago" as CP
+participant "Servicio de Pagos" as SP
+participant "Base de Datos" as DB
+
+Administrador -> UI: Ingresar datos de pago
+UI -> CP: Enviar solicitud de pago
+CP -> SP: Validar y procesar pago
+SP -> DB: Registrar pago
+SP --> CP: Confirmación
+CP -> UI: Mostrar mensaje de éxito
+UI -> Administrador: Confirmación de pago
+@enduml

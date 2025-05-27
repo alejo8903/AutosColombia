@@ -1,0 +1,21 @@
+<h2>Registrar Pago</h2>
+<form th:action="@{/pagos/guardar}" th:object="${pago}" method="post">
+    <div class="mb-3">
+        <label>Monto</label>
+        <input type="number" step="0.01" th:field="*{amount}" required class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label>Método</label>
+        <select th:field="*{method}" class="form-control" required>
+            <option value="Efectivo">Efectivo</option>
+            <option value="Transferencia">Transferencia</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Usuario</label>
+        <select th:field="*{user}" class="form-control" required>
+            <option th:each="u : ${usuarios}" th:value="${u}" th:text="${u.nombre} + ' (' + ${u.cedula} + ')'"></option>
+        </select>
+    </div>
+    <button class="btn btn-success" type="submit">Guardar Pago</button>
+</form>

@@ -21,6 +21,12 @@ public class CellServiceImpl implements CellService {
 
     @Override
     public void saveCell(Cell cell) {
+        List<Cell> cells = cellRepository.findAll();
+        for (Cell c : cells) {
+            if (c.getCode() == cell.getCode()) {
+                throw new RuntimeException("Ya existe una celda con el mismo código");
+            }
+        }
         cellRepository.save(cell);
     }
 
